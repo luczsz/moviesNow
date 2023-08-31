@@ -13,7 +13,6 @@ export default function Category() {
             <Text style={styles.title} >CATEGORIAS</Text>
         </View>
         <View style={styles.content} >
-            <Text style={styles.title} >CATEGORIAS</Text>
              <FlatList
                 data={categoria}
                 keyExtractor={ (item) => item.id}

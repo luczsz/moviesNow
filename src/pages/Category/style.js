@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: theme.colors.primary,
+
     },
     header:{
         marginTop: 32,
@@ -23,7 +24,9 @@ export const styles = StyleSheet.create({
 
     content:{
         flex:1,
-        backgroundColor: 'green',
         padding: 20,
+
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 })

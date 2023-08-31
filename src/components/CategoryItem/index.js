@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { styles } from './style';
 
-export default function CategoryItem() {
+export default function CategoryItem({data}) {
  return (
-   <View>
-        <Text>um teste</Text>
-   </View>
+   <TouchableOpacity style={styles.container}>
+        <Text style={styles.title} > {data.name} </Text>
+   </TouchableOpacity>
   );
 }

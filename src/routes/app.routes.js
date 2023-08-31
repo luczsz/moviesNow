@@ -10,6 +10,8 @@ import Home from '../pages/Home';
 import Category from '../pages/Category';
 import Account from '../pages/Account';
 
+import Filmes from "../pages/Filmes";
+
 export default function AppRoutes(){
      const AppStackt = createNativeStackNavigator();
      const TabsStack = createBottomTabNavigator();
@@ -99,6 +101,12 @@ export default function AppRoutes(){
                     headerShown: false,
                 }} 
             />
+            
+            <AppStackt.Screen
+                name="Filmes"
+                component={Filmes}
+            />
+
         </AppStackt.Navigator>
     );
 };

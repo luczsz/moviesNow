@@ -1,6 +1,7 @@
 import React from "react";
 
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Feather } from '@expo/vector-icons';
+import { theme } from "../global/theme";
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -25,10 +26,12 @@ export default function AppRoutes(){
 
                     borderTopWidth: 0,
 
-                    //bottom: 14,
+                    bottom: 16,
                     elevation: 0,
-                    //borderRadius: 4,
+                    borderRadius: 4,
                     height: 60,
+                    marginLeft: 14,
+                    marginRight: 14,
                                 
                 }
             }}
@@ -42,13 +45,47 @@ export default function AppRoutes(){
                         headerShown: false,
                         tabBarIcon: ({ color, size, focused}) => {
                             if(focused){
-                            return <AntDesign name="home" size={24} color={'#f5f5f5'} />
+                            return <AntDesign name="home" size={24} color={ theme.colors.secondary} />
                         }
                             return <AntDesign name="home" size={24} color="#DDD" />
     
                         }
                     }} 
                 />
+
+                <TabsStack.Screen 
+                    name="Categorias" 
+                    component={Category}
+                    options={{
+                        headerShown: false,
+                        tabBarIcon: ({ color, size, focused}) => {
+                            if(focused){
+                            return <Feather name="box" size={24} color={theme.colors.secondary} />
+                        }
+                            return <Feather name="box" size={24} color="#DDD" />
+    
+                        }
+                    }} 
+                />
+
+                <TabsStack.Screen 
+                    name="Account" 
+                    component={Account}
+                    options={{
+                        headerShown: false,
+                        tabBarIcon: ({ color, size, focused}) => {
+                            if(focused){
+                            return <AntDesign name="user" size={24} color={theme.colors.secondary} />
+                        }
+                            return <AntDesign name="user" size={24} color="#DDD" />
+    
+                        }
+                    }} 
+                />
+
+
+
+
             </TabsStack.Navigator>
         )
     }

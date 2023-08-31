@@ -6,36 +6,37 @@ import { abertos, esportes, desenhos, noticias, filmes } from '../../components/
 
 import { styles } from './style';
 import { Feather } from '@expo/vector-icons';
+import { theme } from '../../global/theme';
 
 export default function Home() {
  return (
    <View style={styles.container} >
         <View style={styles.header}>
-            <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', gap: 9, padding: 10, borderWidth: 2, borderRadius: 12, borderColor: 'white'}}>
-                <Feather name='search' size={25} color={'#f5f5f5'} />
-                <Text style={{color: 'white'}} >
+            <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', gap: 9, padding: 10, borderWidth: 2, borderRadius: 12, borderColor: theme.colors.white090}}>
+                <Feather name='search' size={25} color={theme.colors.white090} />
+                <Text style={{color: theme.colors.white090}} >
                     Escolha um filme.
                 </Text>
             </View>
 
-            <Feather name='settings' size={25} color={'#f5f5f5'} />
+            <Feather name='settings' size={25} color={theme.colors.white090} />
         </View>
-        <View style={styles.content}>
-        <ScrollView
-            showsVerticalScrollIndicator={false}
-        >
-            <Text style={styles.title} >Tv Aberta</Text>
-            <FeedFilme data={abertos} />
-            <Text style={styles.title} >Esportes</Text>
-            <FeedFilme data={esportes} />
-            <Text style={styles.title} >Desenhos</Text>
-            <FeedFilme data={desenhos} />
-            <Text style={styles.title} >Noticias</Text>
-            <FeedFilme data={noticias} />
-            <Text style={styles.title} >Filmes</Text>
-            <FeedFilme data={filmes} />
-        </ScrollView>
 
+        <View style={styles.content}>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+            >
+                <Text style={styles.title} >Tv Aberta</Text>
+                <FeedFilme data={abertos} />
+                <Text style={styles.title} >Esportes</Text>
+                <FeedFilme data={esportes} />
+                <Text style={styles.title} >Desenhos</Text>
+                <FeedFilme data={desenhos} />
+                <Text style={styles.title} >Noticias</Text>
+                <FeedFilme data={noticias} />
+                <Text style={styles.title} >Filmes</Text>
+                <FeedFilme data={filmes} />
+            </ScrollView>
         </View>
    </View>
   );

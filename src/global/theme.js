@@ -1,13 +1,14 @@
 
 export const theme = {
     colors: {
-        primary: '#08081D',
-        secondary: '#61D095',
-        tercery: '#FFD52E',
+        primary: '#f5f5f5',
+        //primary: '#08081D',
+        secondary: '#369BFF',
+        tercery: '#7D4192',
 
-        secondary100: '#0A1033',
-        secondary90: '#0A1033',
-        secondary80: '#0A1033',
+        secondary100: '#6A707C',
+        secondary90: '#8391A1',
+
     
         overlay: 'rgba(0,0,0,0.7)',
         highlight: '#ABB1CC',
@@ -15,6 +16,6 @@ export const theme = {
         line: '#991F36',
         on: '#32BD50',
 
-        white090: '#F5F5F8FE',
+        white090: '#08081D',
       },
 };

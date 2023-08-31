@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-export default function Account() {
+export default function CategoryItem() {
  return (
    <View>
-        <Text>CONTE DE USER</Text>
+        <Text>um teste</Text>
    </View>
   );
 }

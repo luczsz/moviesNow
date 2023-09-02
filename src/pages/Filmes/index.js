@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { View, Text, FlatList, Modal, Image, TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native';
-import { Video, AVPlaybackStatus } from 'expo-av';
+import { Video, } from 'expo-av';
 import * as ScreenOrientation from 'expo-screen-orientation';
+import VideoPlayer from 'expo-video-player';
 
 
 import { styled, styles } from './style';
@@ -26,35 +27,19 @@ export default function Filmes() {
 
     //const videoStatus = usePlaybackStatus();
 
-    const toggleFullScreen = async () => {
-        setIsFullScreen(!isFullScreen);
+    const toggleFullScreen = () => {
+      setIsFullScreen(!isFullScreen);
+    };
 
-        if (!isFullScreen) {
-          await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
-        } else {
-          await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
-        }
-    
-        if (videoRef.current) {
-          if (isFullScreen) {
-            videoRef.current.presentFullscreenPlayer();
-          } else {
-            videoRef.current.dismissFullscreenPlayer();
-          }
-        }
-  };
-
-  const lockToLandscape = async () => {
+    const lockToLandscape = async () => {
     if (isFullScreen) {
         await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
       } else {
         await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
       }
       setIsFullScreen(!isFullScreen);
-  };
+    };
   
-
-
     function state(data){
         setNome(data.name);
         setLogo(data.logo);
@@ -106,15 +91,58 @@ export default function Filmes() {
                 </View>
                 :
                 <View style={styled.videos} >
-                  <Video
-                            ref={videoRef}
-                            source={{ uri: link }}
-                            style={isFullScreen ? styled.fullScreenVideo : styled.videos}
-                            resizeMode="contain"
-                            useNativeControls
-                            onReadyForDisplay={ () => { setIsFullScreen(false)}}
-                            />
+                  
+                  <VideoPlayer
+                      videoProps={{
+                        shouldPlay: false,
+                        resizeMode: 'contain',
+                        source: {
+                          uri: link,
+                        },
+                        ref: videoRef,
+                      }}
+                      fullscreen={{
+                        enterFullscreen: () => {
+                          setIsFullScreen(!isFullScreen)
+                          videoRef.current.setStatusAsync({
+                            shouldPlay: true,
+                            lockToLandscape
+                          })
+                        },
+                        exitFullscreen: () => {
+                          setIsFullScreen(!isFullScreen)
+                          videoRef.current.setStatusAsync({
+                            shouldPlay: false,
+                            lockToLandscape
+                          })
+                        },
+                        inFullscreen: isFullScreen,
+                      }}
+                      style={{ height: 160 }}
+                      slider={{
+                        visible: true,
+                      }}
+                  />
+
+
+
+
+                  {/* <Video
+                    ref={videoRef}
+                    source={{ uri: link }}
+                    style={isFullScreen ? styled.fullScreenVideo : styled.videos}
+                    resizeMode="contain"
+                    useNativeControls
+                    onFullscreenUpdate={ () => alert('certo')}
+                    onReadyForDisplay={ () => { setIsFullScreen(false)}}
+                   /> */}
+
+<TouchableOpacity onPress={toggleFullScreen}>
+  <Text>Toggle Fullscreen</Text>
+</TouchableOpacity>
                 </View>
+
+                
                 
                 }
 

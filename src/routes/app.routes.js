@@ -11,6 +11,7 @@ import Category from '../pages/Category';
 import Account from '../pages/Account';
 
 import Filmes from "../pages/Filmes";
+import Films from "../pages/teste";
 
 export default function AppRoutes(){
      const AppStackt = createNativeStackNavigator();
@@ -105,6 +106,14 @@ export default function AppRoutes(){
             <AppStackt.Screen
                 name="Filmes"
                 component={Filmes}
+            />
+
+            <AppStackt.Screen
+                name="Testes"
+                component={Films}
+                options={{
+                    headerShown: false,
+                }}
             />
 
         </AppStackt.Navigator>

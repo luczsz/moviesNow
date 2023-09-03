@@ -100,4 +100,8 @@ export const categoria =[
         "id": 4,
         "name": 'Desenhos'
     },
+    {
+        "id": 5,
+        "name": 'Teste'
+    },
 ]

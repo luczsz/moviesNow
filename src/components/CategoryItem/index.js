@@ -13,9 +13,18 @@ export default function CategoryItem({data}) {
       navigate.navigate('Filmes');
       return;
     }{
-      alert('false');
+      if(name == 'Teste'){
+        navigate.navigate('Testes');
+        return;
+      }{
+        alert('Não é');
+        return;
+      }
+      alert('Não é1');
       return;
     }
+
+
   }
 
  return (

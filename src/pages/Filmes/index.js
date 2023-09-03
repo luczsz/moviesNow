@@ -4,10 +4,13 @@ import { Video, } from 'expo-av';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import VideoPlayer from 'expo-video-player';
 
+import { useNavigation } from '@react-navigation/native';
+
 
 import { styled, styles } from './style';
 import { filmes } from '../../components/fimls';
 import MoviesItens from '../../components/MoviesItens';
+import VideoLink from '../../components/VideoLink';
 
 import { Feather } from '@expo/vector-icons';
 import { theme } from '../../global/theme';
@@ -24,6 +27,8 @@ export default function Filmes() {
 
     const videoRef = useRef(null);
     const [isFullScreen, setIsFullScreen] = useState(true);
+
+    const navigation = useNavigation();
 
     //const videoStatus = usePlaybackStatus();
 
@@ -71,7 +76,6 @@ export default function Filmes() {
                     <Feather name='heart' size={34} color={theme.colors.secondary} />
                 </View>
 
-                { wats ? 
                 <View style={styled.content}>
                     <Image
                         style={styled.img}
@@ -84,73 +88,14 @@ export default function Filmes() {
 
                     <TouchableOpacity
                         style={styled.watch}
-                        onPress={ () => setWats(false)}
+                        onPress={ () => navigation.navigate('Testes', { dados: link }) }
                     >
                         <Text style={styled.watchText} >a s s i t i r</Text>
                     </TouchableOpacity>
                 </View>
-                :
-                <View style={styled.videos} >
-                  
-                  <VideoPlayer
-                      videoProps={{
-                        shouldPlay: false,
-                        resizeMode: 'contain',
-                        source: {
-                          uri: link,
-                        },
-                        ref: videoRef,
-                      }}
-                      fullscreen={{
-                        enterFullscreen: () => {
-                          setIsFullScreen(!isFullScreen)
-                          videoRef.current.setStatusAsync({
-                            shouldPlay: true,
-                            lockToLandscape
-                          })
-                        },
-                        exitFullscreen: () => {
-                          setIsFullScreen(!isFullScreen)
-                          videoRef.current.setStatusAsync({
-                            shouldPlay: false,
-                            lockToLandscape
-                          })
-                        },
-                        inFullscreen: isFullScreen,
-                      }}
-                      style={{ height: 160 }}
-                      slider={{
-                        visible: true,
-                      }}
-                  />
-
-
-
-
-                  {/* <Video
-                    ref={videoRef}
-                    source={{ uri: link }}
-                    style={isFullScreen ? styled.fullScreenVideo : styled.videos}
-                    resizeMode="contain"
-                    useNativeControls
-                    onFullscreenUpdate={ () => alert('certo')}
-                    onReadyForDisplay={ () => { setIsFullScreen(false)}}
-                   /> */}
-
-<TouchableOpacity onPress={toggleFullScreen}>
-  <Text>Toggle Fullscreen</Text>
-</TouchableOpacity>
-                </View>
-
                 
-                
-                }
-
-
-
-
                     
-                </View>
+            </View>
 
         </Modal>
   

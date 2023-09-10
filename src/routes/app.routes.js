@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../pages/Home';
 import Category from '../pages/Category';
 import Account from '../pages/Account';
+import Dashboard from "../pages/Dashboard";
 
 import Filmes from "../pages/Filmes";
 import Films from "../pages/teste";
@@ -18,7 +19,7 @@ export default function AppRoutes(){
      const TabsStack = createBottomTabNavigator();
 
 
-    function Tabs(){
+    /* function Tabs(){
         return(
             <TabsStack.Navigator
             screenOptions={{
@@ -41,46 +42,17 @@ export default function AppRoutes(){
             
             
             >
-                <TabsStack.Screen 
-                    name="inicio" 
-                    component={Home}
-                    options={{
-                        headerShown: false,
-                        tabBarIcon: ({ color, size, focused}) => {
-                            if(focused){
-                            return <AntDesign name="home" size={24} color={ theme.colors.secondary} />
-                        }
-                            return <AntDesign name="home" size={24} color="#DDD" />
-    
-                        }
-                    }} 
-                />
 
                 <TabsStack.Screen 
-                    name="Categorias" 
-                    component={Category}
+                    name="Dashboard" 
+                    component={Dashboard}
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ color, size, focused}) => {
                             if(focused){
-                            return <Feather name="box" size={24} color={theme.colors.secondary} />
+                            return <AntDesign name="dashboard" size={24} color={theme.colors.secondary} />
                         }
-                            return <Feather name="box" size={24} color="#DDD" />
-    
-                        }
-                    }} 
-                />
-
-                <TabsStack.Screen 
-                    name="Account" 
-                    component={Account}
-                    options={{
-                        headerShown: false,
-                        tabBarIcon: ({ color, size, focused}) => {
-                            if(focused){
-                            return <AntDesign name="user" size={24} color={theme.colors.secondary} />
-                        }
-                            return <AntDesign name="user" size={24} color="#DDD" />
+                            return <AntDesign name="dashboard" size={24} color="#DDD" />
     
                         }
                     }} 
@@ -91,7 +63,7 @@ export default function AppRoutes(){
 
             </TabsStack.Navigator>
         )
-    }
+    } */
 
     return(
         <AppStackt.Navigator>
@@ -101,19 +73,6 @@ export default function AppRoutes(){
                 options={{
                     headerShown: false,
                 }} 
-            />
-            
-            <AppStackt.Screen
-                name="Filmes"
-                component={Filmes}
-            />
-
-            <AppStackt.Screen
-                name="Testes"
-                component={Films}
-                options={{
-                    headerShown: false,
-                }}
             />
 
         </AppStackt.Navigator>

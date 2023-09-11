@@ -3,9 +3,13 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: 'green',
+        backgroundColor: '#08081D',       
 
         padding: 14,
+    },
+
+    content:{
+        flex: 1,
     },
 
     inputs:{
@@ -19,6 +23,28 @@ export const styles = StyleSheet.create({
 
         padding: 10,
         marginBottom: 10,
+    },
+
+    buttons:{
+        height: 120,
+
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    submit:{
+        backgroundColor: '#f5f5f5',
+        width: '80%',
+        height: 60,
+        borderRadius: 12,
+
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    submitText:{
+        fontSize: 22,
+        fontWeight: 'bold',
+        color: '#08081D',
     }
 
 })

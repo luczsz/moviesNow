@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     content:{
-        backgroundColor: 'red',
+        backgroundColor: '#08081D',
         flex: 1,
         padding: 14,
 

@@ -49,11 +49,10 @@ export default function Home() {
  return (
    <View style={styles.container}>
         <View style={styles.content}>
-
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={filmes}
-                numColumns={2}
+                numColumns={'3'}
                 keyExtractor={(item) => item.key}
                 renderItem={ ({item}) => <ListFilmes data={item} load={gettingDados} />}
             />

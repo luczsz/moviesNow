@@ -19,12 +19,10 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginRight: 10,
 
-        width: 164,
-
     },
     img:{
-      width: 162,
-      height: 233,
+      width: 121,
+      height: 185,
       borderRadius: 12,
     },
 })

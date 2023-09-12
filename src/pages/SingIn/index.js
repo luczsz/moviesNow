@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, } from '
 
 import { styles } from '../SingOut/style';
 import { Feather } from '@expo/vector-icons';
+import { theme } from '../../global/theme';
 
 import { useNavigation } from '@react-navigation/native';
 
@@ -36,7 +37,7 @@ return (
                 placeholderTextColor={'#b5b5b5'}
               />
             </View>
-            <Text style={{color: '#f5f5f5', fontSize: 16,}} >
+            <Text style={{color: '#f5f5f5', fontSize: 16, fontFamily: theme.fonts.title700,}} >
                 Esqueci a senha
             </Text>
         </View>
@@ -50,10 +51,10 @@ return (
                 </Text>
             </TouchableOpacity>
             <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 10, marginBottom: 10, gap: 9,}}>
-                <Text style={{color: '#f5f5f5', fontSize: 16,}} >Ainda não tem uma conta?</Text>
+                <Text style={{color: '#f5f5f5', fontSize: 16, fontFamily: theme.fonts.text400}} >Ainda não tem uma conta?</Text>
                 <TouchableOpacity activeOpacity={0.8} onPress={ () => navigation.navigate('Cadastro')} >
-                    <Text style={{color: '#f5f5f5', fontSize: 16,}}>
-                        C A D A S T R E -  S E
+                    <Text style={{color: '#f5f5f5', fontSize: 16, fontFamily: theme.fonts.title700}}>
+                        C A D A S T R E -  S E 
                     </Text>
                 </TouchableOpacity>
             </View>

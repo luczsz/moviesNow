@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { theme } from '../../global/theme';
+
 export const styles = StyleSheet.create({
     container:{
         flex: 1,
@@ -44,6 +46,7 @@ export const styles = StyleSheet.create({
     submitText:{
         fontSize: 22,
         fontWeight: 'bold',
+        fontFamily: theme.fonts.title700,
         color: '#08081D',
     }
 

@@ -1,11 +1,23 @@
-import React from 'react';
-import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import React, {useState, useContext} from 'react';
+import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 
 import { styles } from './style';
 
+import { AuthContext } from '../../contexts/auth';
+
 export default function SingOut() {
+
+  const { signUp, loading } = useContext(AuthContext);
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [nome, setNome] = useState('');
+
+  function Cadastrar(){
+    signUp(nome, email, senha);
+  }
+
  return (
    <KeyboardAvoidingView style={styles.container} >
         
@@ -16,9 +28,10 @@ export default function SingOut() {
                 placeholder='Seu nome...'
                 autoCapitalize='none'
                 autoCorrect={false}
-                /* value={nome}
-                onChangeText={ (text)=> setNome(text)} */
+                value={nome}
+                onChangeText={ (text)=> setNome(text)}
                 placeholderTextColor={'#b5b5b5'}
+                style={{color: '#f5f5f5'}}
               />
           </View>
           <View style={styles.inputs}>
@@ -27,9 +40,10 @@ export default function SingOut() {
                 placeholder='Seu email...'
                 autoCapitalize='none'
                 autoCorrect={false}
-                /* value={nome}
-                onChangeText={ (text)=> setNome(text)} */
+                value={email}
+                onChangeText={ (text)=> setEmail(text)}
                 placeholderTextColor={'#b5b5b5'}
+                style={{color: '#f5f5f5'}}
               />
           </View>
           <View style={styles.inputs}>
@@ -37,10 +51,12 @@ export default function SingOut() {
               <TextInput
                 placeholder='Sua senha...'
                 autoCapitalize='none'
+                secureTextEntry={true}
                 autoCorrect={false}
-                /* value={nome}
-                onChangeText={ (text)=> setNome(text)} */
+                value={senha}
+                onChangeText={ (text)=> setSenha(text)}
                 placeholderTextColor={'#b5b5b5'}
+                style={{color: '#f5f5f5'}}
               />
           </View>
         </View>
@@ -49,8 +65,20 @@ export default function SingOut() {
           <TouchableOpacity 
             style={styles.submit}
             activeOpacity={0.9}
+            onPress={ () => Cadastrar()}
           >
-              <Text style={styles.submitText} >C A D A S T R A R</Text>
+              {loading ? 
+                  
+                  <Text style={styles.submitText} >C A D A S T R A R</Text>
+                  
+                  :
+
+                  <ActivityIndicator
+                    size={25}
+                    color={'#08081D'}
+                  />
+              
+                }
           </TouchableOpacity>
         </View>
 

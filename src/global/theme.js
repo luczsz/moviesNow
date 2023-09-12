@@ -1,16 +1,11 @@
 export const theme = {
     colors: {
-      primary: '#E51C44',
+      primary: '#08081D',
       
-      secondary100: '#0A1033',
-      secondary90: '#0D133D',    
-      secondary80: '#0E1647',
-      secondary85: '#171F52',
-      secondary70: '#1B2565', 
-      secondary60: '#1B2565',
-      secondary50: '#243189', 
-      secondary40: '#1D2766', 
-      secondary30: '#495BCC', 
+      secondary100: '#6A707C',
+      secondary90: '#8391A1',    
+      secondary80: '#369BFF',
+      secondary85: '#7D4192', 
      
       overlay: 'rgba(0,0,0,0.7)',
       highlight: '#ABB1CC',
@@ -19,6 +14,7 @@ export const theme = {
       on: '#32BD50',
   
       discord: '#7289da',
+      white90: '#f5f5f5',
     },
   
     fonts: {

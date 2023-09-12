@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import { View, Text , FlatList} from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../../contexts/auth';
 
 import { styles } from './style';
 import ListFilmes from '../../components/ListFilmes';
@@ -11,8 +12,9 @@ import firebaseConfig from '../../services/firebaseConnection';
 import { getDatabase, ref, set, onValue } from 'firebase/database'; 
 
 
-export default function Home() {
+export default function Home() {    
 
+    const { user } = useContext(AuthContext);
     const navigate = useNavigation();
     const [filmes, setFilmes] =useState([]);
 
@@ -35,7 +37,7 @@ export default function Home() {
                     };
 
                     setFilmes( oldArray => [...oldArray, dados]);
-                    console.log(dados);
+                    //console.log(dados);
                 })
             })
         };

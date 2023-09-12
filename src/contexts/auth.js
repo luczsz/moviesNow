@@ -1,7 +1,7 @@
 import React, {useEffect, useState, createContext} from 'react';
 
 import firebaseConfig from '../services/firebaseConnection';
-//Async Storage
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { getDatabase, ref, set, child, get } from 'firebase/database';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
@@ -14,9 +14,21 @@ export default function AuthProvider({children}){
     const [loadingAuth, setLoadingAuth] = useState(false);
 
     //UseEffect para puxar os dados sobre o user logado
+     // Analisar usuario logado
+     useEffect( () => {
+        async function loadDados(){
+          const storageUser = await AsyncStorage.getItem('Auth_user');
+  
+          if(storageUser){
+              setUser(JSON.parse(storageUser));
+          }
+        };
+        loadDados();
+      },[]) 
 
     //Logando user 
     async function signIn(email, senha){
+        setLoading(false);
         signInWithEmailAndPassword(getAuth(firebaseConfig), email, senha)
         .then((userCredential) => {
             //Login foi bem sucedido, pode acessar os dados do user.
@@ -35,7 +47,8 @@ export default function AuthProvider({children}){
                         id: userData.id,
                     };
                     setUser(data);
-                    //dados salvo offline
+                    storageUser(data);
+                    setLoading(true);
                 } else {
                     alert('User não encontrado');
                 }
@@ -54,6 +67,7 @@ export default function AuthProvider({children}){
 
     //Cadastrando user 
     async function signUp(nome, email, senha){
+        setLoading(false);
         createUserWithEmailAndPassword(getAuth(firebaseConfig), email, senha)
         .then( (userCredential) => {
             const userId = userCredential.user.uid;
@@ -77,7 +91,7 @@ export default function AuthProvider({children}){
                     id: userId,
                 };
                 setUser(data);
-                //Dados offline
+                storageUser(data);
             })
             .catch( (error) => [
                 alert('Erro ao salvar dados', error)
@@ -91,11 +105,19 @@ export default function AuthProvider({children}){
     //Deslogando user
     async function signOut(){
         const auth = getAuth(firebaseConfig);
-
         signOut(auth)
-        .then(
-            console.log('Certo')
-        )
+        .then( async () => {
+            await AsyncStorage.clear()
+            .then( () => {
+                setUser(null);
+                console.log('certinhos');
+            })
+            .catch( (error) => {
+                console.log('não deu' + error);
+            })
+
+            return;
+        })
         .catch( (error) => {
             console.log('error ao deslogar', error);
             return;
@@ -103,6 +125,9 @@ export default function AuthProvider({children}){
     }
 
     //Dados Offline
+    async function storageUser(data){
+        await AsyncStorage.setItem('Auth_user', JSON.stringify(data));
+      }
 
     return(
         <AuthContext.Provider value={{ singned: !!user, user, signIn, signUp, signOut, loading}} >

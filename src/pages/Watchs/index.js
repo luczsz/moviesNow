@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import * as ScreenOrientation from 'expo-screen-orientation';
 import VideoPlayer from 'expo-video-player';
-import { ResizeMode } from 'expo-av';
+import { ResizeMode, Video } from 'expo-av';
 
 export default function Watchs({route}) {
 
@@ -14,7 +14,8 @@ export default function Watchs({route}) {
 
  return (
     <View style={styles.container}>
-        <VideoPlayer
+
+        {/* <VideoPlayer
             videoProps={{
                 shouldPlay: true,
                 resizeMode: ResizeMode.CONTAIN,
@@ -41,7 +42,7 @@ export default function Watchs({route}) {
                 inFullscreen: isFullScreen,
             }}
             style={{height: 290, width: 800, }}
-        />
+        /> */}
    </View>
   );
 }
